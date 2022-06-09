@@ -1,0 +1,17 @@
+# clarifies that the right runtime for your Python code is Python 3.8. 
+# This is enough for Google App Engine to do the necessary setup on its servers.
+runtime: python
+api_version: 1
+# app_engine_apis: true
+env: flex
+entrypoint: app.yaml
+
+handlers:
+- url: /
+  script: login.app
+
+- url: /login.html
+  script: login.app
+
+- url: /profile.html
+  script: profile.app
