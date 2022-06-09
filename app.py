@@ -7,6 +7,15 @@ from flask import (Flask,
                     request, 
                     session, 
                     url_for)
+try:
+  import googleclouddebugger
+  googleclouddebugger.enable(
+    module='[MODULE]',
+    version='[VERSION]'
+    breakpoint_enable_canary=True
+  )
+except ImportError:
+  pass
 
 
 class User:
@@ -70,7 +79,7 @@ def login():
         return redirect(url_for('/'))   
 
     # sets the page template to login
-    return render_template('index.html')
+    return render_template('login.html')
 
 
 """set route for profile """
@@ -80,4 +89,6 @@ def profile():
     print('cdfadsfa')   
     return render_template('profile.html')
 
-
+if __name__ == "__main__":
+    # run flask app on port 5050
+    app.run('0.0.0.0', 8080)

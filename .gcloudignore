@@ -1,0 +1,6 @@
+/venv/
+.gcloudignore
+.git
+.gitignore
+/lib/
+__pycache__
