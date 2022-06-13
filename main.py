@@ -1,5 +1,4 @@
 import pandas as pd
-import gunicorn
 from flask import (Flask, 
                     g, 
                     redirect, 
@@ -7,15 +6,15 @@ from flask import (Flask,
                     request, 
                     session, 
                     url_for)
-try:
-  import googleclouddebugger
-  googleclouddebugger.enable(
-    module='[MODULE]',
-    version='[VERSION]'
-    breakpoint_enable_canary=True
-  )
-except ImportError:
-  pass
+# try:
+#   import googleclouddebugger
+#   googleclouddebugger.enable(
+#     module='[MODULE]',
+#     version='[VERSION]'
+#     breakpoint_enable_canary=True
+#   )
+# except ImportError:
+#   pass
 
 
 class User:
@@ -75,8 +74,9 @@ def login():
             # set them on the path to their profile
             return redirect(url_for('profile'))
 
-        # if user name fails for some reason, resends them to the log in 
-        return redirect(url_for('/'))   
+        # else:
+        #     # if user name fails for some reason, resends them to the log in 
+        #     return redirect(url_for('/login'))   
 
     # sets the page template to login
     return render_template('login.html')
@@ -86,9 +86,8 @@ def login():
 @app.route('/profile')
 def profile():
     """sets route for the profile to attach to the template for it""" 
-    print('cdfadsfa')   
     return render_template('profile.html')
 
 if __name__ == "__main__":
     # run flask app on port 5050
-    app.run('0.0.0.0', 8080)
+    app.run("0.0.0.0", 8080)
